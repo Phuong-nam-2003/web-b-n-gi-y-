@@ -1,0 +1,76 @@
+ul {
+    display: flex;
+}
+.row {
+    display: flex;
+}
+.menu li {
+    display: inline-block;
+    margin: 0 10px;
+}
+.logo {
+    color: black;
+    font-size: 40px;
+    font-family: Pacifico-Regular;
+    width: 50%;
+}
+.giorhang {
+    align-self: center;
+    margin-left: 11%;
+}
+.h-container.container {
+    max-width: 70%;
+    margin: auto;
+}
+header.header {
+    background: greenyellow;
+    padding: 10px 0;
+}
+
+.footer-widget {
+    background: bisque;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.menu {
+    align-self: center;
+}
+
+
+.cl2 {
+    display: inline-grid;
+
+}
+
+.las {
+    display: flex;
+    margin-bottom: 12%;
+    margin-top: 12%;
+    margin-inline: 17%;
+}
+
+img {
+    width: 46%;
+}
+.cl1 {
+    margin-left: 25%;
+}
+
+
+
+@media screen {
+    .bass {
+        width: 100%;
+
+    }
+    .logo {
+        width: 36%;
+    }
+
+    .cl1 {
+        margin-inline: 44px;
+        margin-right: -10%;
+    }
+
+}

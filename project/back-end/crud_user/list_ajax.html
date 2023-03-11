@@ -1,0 +1,46 @@
+<!--
+-kỹ thuật ajax : Asynchronous javascript and XML , là ký thuật ko dồng bộ dựa trên ngôn ngữ javascript
+php là ngôn ngữ đồng bộ : -> tốc dộ chuyển trang chậm javasrcipt là ngôn ngữ ko đòng bộ
+- Tích hợp jQuery để dùng ajax để cho dễ về mặt cú pháp
+-->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<a href="#" id="click-ajax">click lấy thêm sách user mà k càn tải lại trang </a>
+<br>
+<div style="border: 1px solid greenyellow" id="result"> danh sách sẽ đc hiển thị tại đây </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $('#click-ajax').click(function (){
+            // gọi ajax
+            $.ajax({
+                url: 'index.php', //url php sẽ s lý ajax
+                method: 'get', // phương thức gửi dữ liệu: get, post, put, delete
+                data: {       //dữ liệu muốn gửi lên từ ajax cho php sử lý
+                    fullname: 'namdz',
+                    age: 20
+                } ,
+                success: function (data) {  //nơi nhân dụ lieuj chả về từ php
+                    console.log(data)
+                    $('#result').html(data);
+                    //debug ajax:
+                    //Inspsect -> Network -> Filter theo Fetch/XHR
+                }
+            })
+        })
+    })
+</script>
+</html>
+

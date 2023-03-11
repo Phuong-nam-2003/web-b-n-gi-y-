@@ -1,0 +1,57 @@
+ul {
+    display: flex;
+}
+.row {
+    display: flex;
+}
+.menu li {
+    display: inline-block;
+    margin: 0 10px;
+}
+.logo {
+    color: black;
+    font-size: 40px;
+    font-family: Pacifico-Regular;
+    width: 50%;
+}
+.giorhang {
+    align-self: center;
+    margin-left: 11%;
+}
+.h-container.container {
+    max-width: 70%;
+    margin: auto;
+}
+header.header {
+    background: greenyellow;
+    padding: 10px 0;
+}
+
+.footer-widget {
+    background: bisque;
+    text-align: center;
+    margin-top: 7px;
+}
+.bass {
+    width: 1519px;
+    margin: auto;
+    margin-top: 0px;
+    margin-right: 0;
+}
+.menu {
+    align-self: center;
+}
+
+@media screen {
+    .bass {
+        width: 100%;
+
+    }
+    .logo {
+        width: 36%;
+    }
+
+
+}
+
+

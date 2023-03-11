@@ -1,0 +1,7 @@
+div {
+    justify-content: center;
+    display: flex;
+    margin-inline: 38%;
+    border: 7px solid #15b24c;
+    margin-top: 10%;
+}

@@ -1,0 +1,98 @@
+.mau {
+    background: azure;
+}
+ul {
+    display: flex;
+}
+.row {
+    display: flex;
+}
+.menu li {
+    display: inline-block;
+    margin: 0 10px;
+}
+.logo {
+    color: black;
+    font-size: 40px;
+    font-family: Pacifico-Regular;
+    width: 50%;
+}
+.giorhang {
+    align-self: center;
+    margin-left: 11%;
+}
+.h-container.container {
+    max-width: 70%;
+    margin: auto;
+}
+header.header {
+    background: greenyellow;
+    padding: 10px 0;
+}
+
+.menu {
+    align-self: center;
+}
+.footer-widget {
+    background: bisque;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.trog {
+    display: flex;
+    margin-top: 13%;
+    margin-bottom: 13%;
+
+}
+.h-1 {
+    width: 32%;
+    margin-inline: 18%;
+}
+.borr {
+    margin-inline: -68%;
+    margin-top: 52%;
+}
+input.size {
+    width: 50px;
+}
+input.soluong {
+    width: 50px;
+}
+h5.h4-click {
+    border: 3px solid red;
+    border-radius: 7px;
+    margin-top: 17%;
+    margin-right: 53%;
+
+}
+h5.h4-click {
+    background: aliceblue;
+}
+input[type="submit"] {
+    border-radius: 35px;
+}
+div#carouselExampleIndicators {
+    width: 77%;
+}
+a.a {
+    border: 2px solid black;
+    border-radius: 7px;
+    padding-right: 2%;
+    background: aliceblue;
+}
+
+@media screen {
+    .mau {
+
+        height: 551px;
+        margin-top: -13%;
+    }
+    .h-1 {
+        padding-top: 95px;
+    }
+    .logo {
+        width: 36%;
+    }
+
+}
