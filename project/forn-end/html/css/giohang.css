@@ -75,6 +75,17 @@ header.header {
     margin-top: 7px;
 }
 
+a.delete {
+    margin-top: 12px;
+    height: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 14px;
+    background-color: tomato;
+}
+
+
 @media screen {
     .product-item {
         padding-bottom: 66px;

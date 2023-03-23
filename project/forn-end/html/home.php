@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+$cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +32,7 @@
         </ul>
       </div>
       <div class="giorhang">
-        <a href="giohang.php"><i class="fas fa-shopping-cart"></i></a>
+        <a href="giohnag/giohang.php"><i class="fas fa-shopping-cart"><?php echo count($cart) ?></i></a>
       </div>
     </div>
   </div>

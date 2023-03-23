@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../connection.php';
+require_once 'connection.php';
 
 if (isset($_GET['id'])){
     $id = $_GET['id'];
@@ -8,6 +8,11 @@ if (isset($_GET['id'])){
     $id='';
 }
 $sql_chitiet = mysqli_query($connection,"SELECT * FROM category WHERE  id='$id'");
+
+$cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +25,7 @@ $sql_chitiet = mysqli_query($connection,"SELECT * FROM category WHERE  id='$id'"
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.0/css/all.min.css" integrity="sha512-ykRBEJhyZ+B/BIJcBuOyUoIxh0OfdICfHPnPfBy7eIiyJv536ojTCsgX8aqrLQ9VJZHGz4tvYyzOM0lkgmQZGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/chitiet.css">
+    <link rel="stylesheet" href="css/chitiet.css">
 
 
 </head>
@@ -31,15 +36,15 @@ $sql_chitiet = mysqli_query($connection,"SELECT * FROM category WHERE  id='$id'"
             <div class="logo">new Nike</div>
             <div class="menu">
                 <ul>
-                    <li><a href="../home.php">Home</a></li>
-                    <li><a href="../sanpham.php">sản phẩm</a></li>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="sanpham.php">sản phẩm</a></li>
                     <li><a href="chitiet.php">chi tiết</a></li>
-                    <li><a href="../lienhe.php">liên hệ</a></li>
+                    <li><a href="lienhe.php">liên hệ</a></li>
                     <li><a href="login.php">login</a></li>
                 </ul>
             </div>
             <div class="giorhang">
-                <a href="../giohang.php"><i class="fas fa-shopping-cart"></i></a>
+                <a href="giohnag/giohang.php"><i class="fas fa-shopping-cart"><?php echo count($cart) ?></i></a>
             </div>
         </div>
     </div>
@@ -49,36 +54,27 @@ $sql_chitiet = mysqli_query($connection,"SELECT * FROM category WHERE  id='$id'"
 <div class="vien">
     <div class="trog">
         <div class="h-1">
-           <img width="90%" src="../../../back-end/crud_user/upload/<?php echo $row_chtiet['avatar']?>">
+           <img width="90%" src="../../back-end/crud_user/upload/<?php echo $row_chtiet['avatar']?>">
         </div>
         <div class="h-2">
-            <form class="form">
+            <form class="form" action="giohnag/cart.php" method="GET" >
                 <div class="borr">
                     <h3> <?php echo $row_chtiet['name']?></h3>
-
-                    <br>
-                    gioi tinh :
-                    <input type="radio" name="gender">nam
-                    <input type="radio" checked name="gender">nữ
-                    <br>
-                    size <input class="size" type="number" value="">
-                    <br>
-                    so luong <input class="soluong" type="number" value="so lượng" >
-                    <br>
-                    màu sắc:
-                    <Select id="country">
-                        <option value="mdo">màu đỏ</option>
-                        <option value="md">màu đen </option>
-                        <option value="mt">mau trắng</option>
-                    </Select>
                     <br>
                     <div class="product-item-text">
                         <p> giá :<span><?php echo $row_chtiet['gia']?></span><sup>đ</sup></p>
                     </div>
+
+                    so luong <input class="soluong" type="number" name="quantity" value="1" >
+                    <input type="hidden" name="id" value="<?php echo $row_chtiet['id']?>">
+                        <br>
                     <br>
-                    <a class="a" href="../thanh_toan.php">mua hàng </a>
-                    <h5 class="h4-click">thêm vào giỏ hàng  </h5>
+                    <p>
+                        <button type="submit" class="h4-click">Mua</button>
+
+                    </p>
                 </div>
+
             </form>
         </div>
     </div>
@@ -100,7 +96,7 @@ $sql_chitiet = mysqli_query($connection,"SELECT * FROM category WHERE  id='$id'"
         </div>
     </div>
 </footer>
-<script src="../js/chitiet.js"></script>
+<script src="js/chitiet.js"></script>
 </body>
 </body>
 </html>

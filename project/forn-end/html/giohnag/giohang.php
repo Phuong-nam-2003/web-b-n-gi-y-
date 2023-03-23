@@ -1,7 +1,22 @@
 <?php
 session_start();
+require_once '../connection.php';
 
-if (isset($_POST))
+$cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
+
+if (isset($_POST['search'])) {
+    $name = $_POST['name'];
+// cách chống : lọc giá  trị từ form bằng hàm sau:
+
+// kết nối CSDL để tìm kiếm theo tên : SELECT
+    $sql_select_all = "SELECT * FROM category WHERE name LIKE '%$name%'";
+    $result_all = mysqli_query($connection, $sql_select_all);
+    $users = mysqli_fetch_all($result_all, MYSQLI_ASSOC);
+    echo '<pre>';
+    print_r($users);
+    echo '<pre>';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +30,7 @@ if (isset($_POST))
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.0/css/all.min.css" integrity="sha512-ykRBEJhyZ+B/BIJcBuOyUoIxh0OfdICfHPnPfBy7eIiyJv536ojTCsgX8aqrLQ9VJZHGz4tvYyzOM0lkgmQZGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/giohang.css">
+  <link rel="stylesheet" href="../css/giohang.css">
 
 </head>
 <header class="header">
@@ -24,15 +39,15 @@ if (isset($_POST))
       <div class="logo">new Nike</div>
       <div class="menu">
         <ul>
-          <li><a href="home.php">Home</a></li>
-          <li><a href="sanpham.php">sản phẩm</a></li>
+          <li><a href="../home.php">Home</a></li>
+          <li><a href="../sanpham.php">sản phẩm</a></li>
 
-          <li><a href="lienhe.php">liên hệ</a></li>
-            <li><a href="login/login.php">login</a></li>
+          <li><a href="../lienhe.php">liên hệ</a></li>
+            <li><a href="../login/login.php">login</a></li>
         </ul>
       </div>
       <div class="giorhang">
-        <a href="giohang.html"><i class="fas fa-shopping-cart"></i></a>
+        <a href="giohang.php"><i class="fas fa-shopping-cart"><?php echo count($cart) ?></i></a>
       </div>
     </div>
   </div>
@@ -40,24 +55,56 @@ if (isset($_POST))
 
 <section class="cart">
   <h2>Cart</h2>
-  <form>
+
     <table>
+
       <thead>
       <tr>
+          <th>stt</th>
         <th>sản phẩm</th>
+          <th>tên</th>
         <th>giá</th>
-        <th>sl</th>
-        <th>chọn</th>
+        <th>số lượng</th>
+          <th>thanh tiền</th>
+        <th></th>
       </tr>
+
+<?php
+    $total = 0;
+      ?>
+      <?php foreach ($cart AS $value):?>
+      <tr>
+<?php $total += $value['gia'] * $value['quantity'];
+//           echo '<pre>';
+//          print_r($total);
+//          echo '<pre>';
+          ?>
+          <td><?php echo $value['id']?></td>
+          <td><img src="../../../back-end/crud_user/upload/<?php echo $value['avatar']?>" height="100px"></td>
+          <td><?php echo $value['name']?></td>
+          <td><?php echo $value['gia']?></td>
+
+          <form action="cart.php">
+              <td>
+              <input type="hidden" name="action" value="update">
+              <input type="hidden" name="id" value="<?php echo $value['id']?>">
+              <input style="width: 12%;" type="text" name="quantity" value="<?php echo $value['quantity']?>">
+              <button type="submit">cập nhập</button>
+          </td>
+          </form>
+          <td><?php echo  number_format( $value['gia'] * $value['quantity'] )?></td>
+          <td><a class="delete" href="cart.php?id=<?php echo $value['id']?>&action=delete">xóa</a></td>
+      <?php endforeach;?>
       </thead>
     </table>
+
     <div style="text-align: right;" class="price-total">
-      <p style="font-weight: bold;">Tổng tiền:<span>0</span><sup>đ</sup></p>
+      <p style="font-weight: bold;">Tổng tiền:<span><?php echo $total  ?></span><sup>đ</sup></p>
     </div>
     <button><a href="thanh_toan.php">mua hàng</a></button>
 
 
-</form>
+
  </section>
 <footer>
   <div>

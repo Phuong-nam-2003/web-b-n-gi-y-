@@ -14,8 +14,7 @@ $error = '';
 
  // - Check nếu đăng nhập rồi thì chuyển hướng sang trang profile
  if (isset($_SESSION['username'])) {
-     $_SESSION['success'] = 'Bạn đã đăng nhập rồi, ko thể truy cập
-    lại trang login';
+
      header('Location: index.php');
      exit();
  }
@@ -36,11 +35,8 @@ if (isset($_POST['login'])) {
         if ($row){
             $_SESSION['username'] = $username;
             $_SESSION['success'] = 'đăng nhập thành công ';
-            header("location: index.php");
-            exit();
         }
         $error= 'tk/mk k đúng';
-
 
 
 
@@ -84,11 +80,6 @@ if (isset($_POST['login'])) {
 
         <input type="checkbox" name="remember" value="1"> Ghi nhớ đăng nhập
         <input type="submit" name="login" value="đăng nhập" class="from-submit" onclick="check()">
-        <div>
-            <h3>
-                <a> quên tài khoản </a>
-            </h3>
-        </div>
         <div>
             <h3>bạn chưa có tài khoản ? đăng ký <a href="dk.php">tại đây</a></h3>
         </div>

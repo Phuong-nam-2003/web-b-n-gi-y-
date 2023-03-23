@@ -201,7 +201,7 @@ if (isset($_POST['submit'])) {
 
 
         <!-- User Menu-->
-        <li><a class="app-nav__item" href="/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+        <li><a class="app-nav__item" href="../login/dagxuat.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
         </li>
     </ul>
@@ -223,6 +223,9 @@ if (isset($_POST['submit'])) {
         <li><a class="app-menu__item active" href="table-data-quanly-sanpham.php"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span
                         class="app-menu__label">Quản lý sản phẩm</span></a>
+        </li>
+        <li><a class="app-menu__item" href="../index.php"><i
+                        class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Admin </span></a>
         </li>
 
     </ul>

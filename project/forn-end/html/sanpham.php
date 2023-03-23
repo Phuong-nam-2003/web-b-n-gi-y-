@@ -1,10 +1,25 @@
 <?php
 session_start();
 require_once 'connection.php';
+
 $sql_select_all = "SELECT * FROM category  ";
 $resut_all = mysqli_query($connection, $sql_select_all);
-$category = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
+$category = mysqli_fetch_all($resut_all, MYSQLI_ASSOC);
 
+$cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
+
+//if (isset($_POST['search'])) {
+//    $name = $_POST['name'];
+//// cách chống : lọc giá  trị từ form bằng hàm sau:
+//    $name = mysqli_real_escape_string($connection, $name);
+//// kết nối CSDL để tìm kiếm theo tên : SELECT
+//    $sql_select_all = "SELECT * FROM category WHERE name LIKE '%$name%'";
+//    $result_all = mysqli_query($connection, $sql_select_all);
+//    $users = mysqli_fetch_all($result_all, MYSQLI_ASSOC);
+//
+//    echo '<pre>';
+//    print_r($users);
+//    echo '<pre>';
 
 ?>
 
@@ -40,13 +55,13 @@ $category = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
         </ul>
       </div>
       <div class="giorhang">
-        <a href="giohang.php"><i class="fas fa-shopping-cart"></i></a>
+        <a href="giohnag/giohang.php"><i class="fas fa-shopping-cart"><?php echo count($cart) ?></i></a>
       </div>
     </div>
   </div>
 </header>
-<form class="sanf">
-  <div class="sera">
+<form class="sanf"  action="seach.php" method="get">
+  <div class="sera"  >
     tìm kiếm <i class="fas fa-search"></i>
     <input type="text" name="name" >
       <input type="submit" name="search" value="tìm kiếm">
@@ -62,10 +77,11 @@ $category = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
 
         <div class="product-item-text">
           <p><span><?php echo $user['gia']?></span><sup>đ</sup></p>
-          <h1 style="font-weight: bold; font-size: 18px" > <a href="chitiet/chitiet.php?id=<?php echo $user['id']?>"><?php echo $user['name']?></a></h1>
+          <h1 style="font-weight: bold; font-size: 18px" ><a href="chitiet.php?id=<?php echo $user['id']?>"><?php echo $user['name']?></a></h1>
         </div>
-       <button ><a href="chitiet/chitiet.php?id=<?php echo $user['id']?>">mua hàng</a></button>
-        <button class="but-click">Thêm vào giỏ hàng</button>
+          <h1 style="font-weight: bold; font-size: 18px" ><a href="chitiet.php?id=<?php echo $user['id']?>">xem</a></h1>
+          <br/>
+          <a href="giohnag/cart.php?id=<?php echo $user['id']?>"> thêm vào giỏ hàng</a>
       </div>
           <?php endforeach;?>
     </div>
@@ -77,7 +93,7 @@ $category = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
             <p><span>20.000</span><sup>đ</sup></p>
             <h1 style="font-weight: bold; font-size: 18px"> 1</h1>
           </div>
-          <button ><a href="chitiet/chitiet.php">mua hàng</a></button>
+          <button ><a href="chitiet.php">mua hàng</a></button>
           <button class="but-click">Thêm vào giỏ hàng</button>
         </div>
         <div class="product-item">
@@ -122,74 +138,11 @@ $category = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
             <p><span>10.000</span><sup>đ</sup></p>
             <h1 style="font-weight: bold; font-size: 18px"> 6</h1>
           </div>
-          <button><a href="chitiet/chitiet6.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
+          <button><a href="chitiet/chitiet6.php">mua hàng</a></button><br/>
 
+          <div>  <button class="but-click">Thêm vào giỏ hàng</button> </div>
       </div>
-
-
-      <div class="product-items">
-        <div class="product-item">
-          <img width="100%" src="img2/anh1.jpg" alt="">
-          <div class="product-item-text">
-            <p><span>20.000</span><sup>đ</sup></p>
-            <h1 style="font-weight: bold; font-size: 18px"> 1</h1>
-          </div>
-          <button ><a href="chitiet/chitiet.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
-        <div class="product-item">
-          <img width="100%" src="img2/anh2.jpg" alt="">
-          <div class="product-item-text">
-            <p><span>20.000</span> <sup>đ</sup></p>
-            <h1 style="font-weight: bold; font-size: 18px"> 2</h1>
-          </div>
-          <button><a href="chitiet/chitiet2.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
-        <div class="product-item">
-          <img src="img2/anh3.jpg" alt="">
-          <div class="product-item-text">
-            <p><span>30.000</span><sup>đ</sup></p>
-            <h1 style="font-weight: bold; font-size: 18px"> 3</h1>
-          </div>
-          <button><a href="chitiet/chitiet3.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
-        <div class="product-item">
-          <img src="img2/4.jpg" alt="">
-          <div class="product-item-text">
-            <p><span>10.000</span><sup>đ</sup></p>
-            <h1 style="font-weight: bold; font-size: 18px">4</h1>
-          </div>
-          <button><a href="chitiet/chitiet4.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
-        <div class="product-item">
-          <img src="img2/anh8.jpg" alt="">
-          <div class="product-item-text">
-            <p><span>30.000</span><sup>đ</sup></p>
-            <h1 style="font-weight: bold; font-size: 18px">5</h1>
-          </div>
-          <button><a href="chitiet/chitiet5.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
-        <div class="product-item">
-          <img src="img2/anh6.jpg" alt="">
-          <div class="product-item-text">
-            <p><span>10.000</span><sup>đ</sup></p>
-            <h1 style="font-weight: bold; font-size: 18px"> 6</h1>
-          </div>
-          <button><a href="chitiet/chitiet6.php">mua hàng</a></button>
-          <button class="but-click">Thêm vào giỏ hàng</button>
-        </div>
-
       </div>
-
-
-
-
 
 
     </div>

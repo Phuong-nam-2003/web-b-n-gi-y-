@@ -1,0 +1,33 @@
+.tot {
+    display: flex;
+    margin-bottom: 17%;
+    margin-top: 17%
+}
+
+input.cach {
+    width: 30px;
+}
+
+p {
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    margin-left: 59%;
+}
+img {
+    width: 100%;
+    vertical-align: middle;
+    border-style: none;
+}
+
+table{
+    border:1px solid black;
+}
+th{
+    border:1px solid black;
+}
+td{
+    border:1px solid black;
+}
+.a {
+    margin-inline: 15%;
+}

@@ -32,15 +32,20 @@ if (isset($_POST['submit'])) {
         $error = 'mobile phải là số ';
     }
 
-    $sql_insert = "INSERT INTO users(name , username , password, mobile, email) VALUES ('$name','$user','$pass','$mobile','$email')";
-    $is_insert = mysqli_query($connection, $sql_insert);
-    //var_dump($is_insert);
-    if ($is_insert){
-        $_SESSION['success'] = 'thêm mới thành công';
+    if (empty($error)){
+        $error='';
+
+        $sql_insert = "INSERT INTO users(name , username , password, mobile, email) VALUES ('$name','$username','$password','$mobile','$email')";
+        $is_insert = mysqli_query($connection, $sql_insert);
+//        var_dump($is_insert);
+        if ($is_insert){
+            $_SESSION['success'] = 'đăng ký thành công';
+        }
         header('Location: login.php');
         exit();
+
+        $error = 'đăng ký thất bại ';
     }
-    $error = 'đăng ký thất bại ';
 }
 ?>
 <div class="all">

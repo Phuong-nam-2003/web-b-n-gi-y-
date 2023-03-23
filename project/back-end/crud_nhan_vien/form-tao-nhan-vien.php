@@ -4,9 +4,9 @@ session_start();
 <?php
 require_once '../crud_user/connection.php';
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+//echo '<pre>';
+//print_r($_POST);
+//echo '</pre>';
 $error = '';
 
 if (isset($_POST['submit'])) {
@@ -23,16 +23,20 @@ if (isset($_POST['submit'])) {
     }elseif (!is_numeric($mobile)){
         $error = 'mobile phải là số ';
     }
+    if (empty($error)){
+        $error='';
 
-    $sql_insert = "INSERT INTO users(name , username , password, mobile, email) VALUES ('$name','$user','$pass','$mobile','$email')";
-    $is_insert = mysqli_query($connection, $sql_insert);
-    //var_dump($is_insert);
-    if ($is_insert){
-        $_SESSION['success'] = 'thêm mới thành công';
-        header('Location: table-nhan-vien.php');
+        $sql_insert = "INSERT INTO users(name , username , password, mobile, email) VALUES ('$name','$username','$password','$mobile','$email')";
+        $is_insert = mysqli_query($connection, $sql_insert);
+//        var_dump($is_insert);
+        if ($is_insert){
+            $_SESSION['success'] = 'đăng ký thành công';
+        }
+        header('Location: login.php');
         exit();
+
+        $error = 'đăng ký thất bại ';
     }
-    $error = 'đăng ký thất bại ';
 }
 ?>
 
@@ -139,7 +143,7 @@ if (isset($_POST['submit'])) {
 
 
       <!-- User Menu-->
-      <li><a class="app-nav__item" href="/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+      <li><a class="app-nav__item" href="../login/dagxuat.php"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
       </li>
     </ul>
@@ -164,6 +168,9 @@ if (isset($_POST['submit'])) {
       <li><a class="app-menu__item" href="../crud_user/table-data-quanly-sanpham.php"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
       </li>
+        <li><a class="app-menu__item" href="../index.php"><i
+                        class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Admin </span></a>
+        </li>
 
 
     </ul>
