@@ -67,6 +67,9 @@ $resut_all = mysqli_query($connection, $sql_select_all);
         <li><a class="app-menu__item" href="../index.php"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Admin </span></a>
         </li>
+        <li><a class="app-menu__item" href="../quan_ly_DH/table.php"><i
+                        class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý đơn hàng </span></a>
+        </li>
 
     </ul>
   </aside>

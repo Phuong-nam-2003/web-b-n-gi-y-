@@ -3,23 +3,40 @@ session_start();
 require_once '../connection.php';
 $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
 
+$error = '';
 if (isset($_POST['name'])){
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $diachi = $_POST['diachi'];
 
-    $query = mysqli_query($connection, "INSERT INTO orders(name,phone,email,diachi) VALUES (	'$name','$phone','$email','$diachi')" );
+    if (empty($name)) {
+        $error = 'bạn chưa nhập tên';
+    } elseif (empty($email)) {
+        $error = 'bạn chưa nhập email';
+    }elseif (empty($phone)) {
+        $error = 'bạn chưa nhập mobile';
+    } elseif (!is_numeric($phone)) {
+        $error = 'mobile phải là số ';
+    }elseif (empty($diachi)){
+        $error = 'địa chỉ phải nhập';
+    }
 
+    if (empty($error)){
+        $error = '';
+
+    $query = mysqli_query($connection, "INSERT INTO orders(name,phone,email,diachi) VALUES (	'$name','$phone','$email','$diachi')" );
     if ($query){
-        $id_orders = mysqli_insert_id($connection);
+        $id_order = mysqli_insert_id($connection);
         foreach ($cart AS $value){
-            mysqli_query($connection,"INSERT INTO orders_detail(id_order,id_sanpham,quantity,gia) VALUES ('$id_order','$value[id]','$value[quantity]','$value[gia]')" );
-        }
+            mysqli_query($connection,"INSERT INTO orders_detail (id_order, id_sanpham, name, quantity, gia) VALUES ('$id_order', '$value[id]', '$value[name]','$value[quantity]', '$value[gia]')");
+              }
         unset($_SESSION['cart']);
         header('location: thansk.php');
     }
 }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +82,7 @@ if (isset($_POST['name'])){
             <h2> thông tin người mua</h2>
 
             <form>
+<p style="  margin-left: 29%;"><?php echo $error;?></p>
                 <div class="form-group">
                     <label for="exampleInputEmail1"> name</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" value="" name="name">

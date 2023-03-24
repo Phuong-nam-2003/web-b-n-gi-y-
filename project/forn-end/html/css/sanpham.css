@@ -15,7 +15,7 @@
     margin-top: 40px;
     display: flex;
     justify-content: space-between;
-    background-color: #ddd;
+    background-color: white;
     padding: 12px;
 }
 .product-item {
@@ -23,6 +23,7 @@
     background-color: #fff;
     padding: 12px;
     text-align: center;
+    border: 7px solid #ddd;
 }
 .product-item img {
     width: 100%;

@@ -1,7 +1,18 @@
 <?php
 session_start();
 require_once './crud_user/connection.php';
-$users = '';
+$users = [];
+
+if (isset($_GET['search'])) {
+    $name = $_GET['name'];
+
+    $name = mysqli_real_escape_string($connection, $name);
+
+    $sql_select_all = "SELECT * FROM category WHERE name LIKE '%$name%'";
+    $result_all = mysqli_query($connection, $sql_select_all);
+    $users = mysqli_fetch_all($result_all, MYSQLI_ASSOC);
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -62,6 +73,10 @@ $users = '';
         <li><a class="app-menu__item" href="index.php"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Admin </span></a>
         </li>
+        </li>
+        <li><a class="app-menu__item" href="quan_ly_DH/table.php"><i
+                        class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý đơn hàng </span></a>
+        </li>
 
 
 
@@ -78,11 +93,13 @@ $users = '';
         </div>
       </div>
     </div>
+      <form action="" method="get">
       <div class="sera"  >
           tìm kiếm <i class="fas fa-search"></i>
           <input type="text" name="name" >
           <input type="submit" name="search" value="tìm kiếm">
       </div>
+      </form>
       <div class="row">
           <table >
               <thead>
@@ -95,29 +112,14 @@ $users = '';
 
               </tr>
 
-              <?php
-              if (isset($_GET['search'])) {
-                  $name = $_GET['name'];
 
-                  $name = mysqli_real_escape_string($connection, $name);
-
-                  $sql_select_all = "SELECT * FROM category WHERE name LIKE '%$name%'";
-                  $result_all = mysqli_query($connection, $sql_select_all);
-                  $users = mysqli_fetch_all($result_all, MYSQLI_ASSOC);
-
-                  echo '<pre>';
-                  print_r($users);
-                  echo '<pre>';
-              }
-
-              ?>
 
 
 
 
 
               <?php if (!empty($users)):
-                  var_dump($users);
+//                  var_dump($users);
               ?>
 
               <?php
@@ -125,7 +127,8 @@ $users = '';
                   <tr>
                       <td><?php echo $user['id']?></td>
                       <td><?php echo $user['name']?></td>
-                      <td><img src="upload/<?php echo $user['avatar']?>" height="60px" ></td>
+                      <td><img src="crud_user/upload/<?php echo $user['avatar']?>" height="60px" ></td>
+
                       <td><?php echo $user['gia']?></td>
                       <td><?php echo $user['soluong']?></td>
                       <td>
