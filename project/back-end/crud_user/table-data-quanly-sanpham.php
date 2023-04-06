@@ -86,18 +86,7 @@ $resut_all = mysqli_query($connection, $sql_select_all);
                             </div>
 
 
-                            <?php
-                            if (isset($_SESSION['success'])){
-                                echo $_SESSION['success'];
-                                unset($_SESSION['success']);
-                            }
-                            ?>
-                            <?php
-                            if (isset($_SESSION['error'])){
-                                echo $_SESSION['error'];
-                                unset($_SESSION['error']);
-                            }
-                            ?>
+
                           </div>
                         <table >
                             <thead>

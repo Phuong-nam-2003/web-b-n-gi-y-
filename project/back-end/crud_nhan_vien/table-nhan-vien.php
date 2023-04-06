@@ -112,7 +112,7 @@ $users = mysqli_fetch_all($resut_all, MYSQLI_ASSOC);
 
                     <td> <?php echo $user['id']?></td>
                     <td width="150"><?php echo $user['name']?></td>
-                    <td><?php echo $user['password']?></td>
+                    <td><?php echo $user['username']?></td>
                     <td><?php echo $user['mobile']?></td>
                     <td><?php echo $user['email'];?></td>
                     <td>

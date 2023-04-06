@@ -22,19 +22,23 @@ if (isset($_POST['name'])){
         $error = 'địa chỉ phải nhập';
     }
 
+
     if (empty($error)){
         $error = '';
-
     $query = mysqli_query($connection, "INSERT INTO orders(name,phone,email,diachi) VALUES (	'$name','$phone','$email','$diachi')" );
     if ($query){
+        $cart = count($cart);
+        for ($i = 0 ; $i < $cart; $i++){
         $id_order = mysqli_insert_id($connection);
-        foreach ($cart AS $value){
+        foreach ($_SESSION['cart'] AS $cart => $value){
             mysqli_query($connection,"INSERT INTO orders_detail (id_order, id_sanpham, name, quantity, gia) VALUES ('$id_order', '$value[id]', '$value[name]','$value[quantity]', '$value[gia]')");
               }
         unset($_SESSION['cart']);
         header('location: thansk.php');
     }
+    }
 }
+
 }
 
 ?>
@@ -128,15 +132,10 @@ if (isset($_POST['name'])){
                     <?php foreach ($cart AS $value):?>
                     <tr>
                         <?php $total += $value['gia'] * $value['quantity'];
-                        //           echo '<pre>';
-                        //          print_r($total);
-                        //          echo '<pre>';
                         ?>
-
                         <td><img src="../../../back-end/crud_user/upload/<?php echo $value['avatar']?>" height="100px"></td>
                         <td><?php echo $value['name']?></td>
                         <td><?php echo $value['gia']?></td>
-
                         <form action="cart.php">
                             <td>
                                 <input style="width: 15%;" type="text" name="quantity" value="<?php echo $value['quantity']?>">

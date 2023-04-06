@@ -11,7 +11,7 @@ $sql_chitiet = mysqli_query($connection,"SELECT * FROM category WHERE  id='$id'"
 $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
 
 
-$users = '';
+$sp = '';
 if (isset($_GET['search'])) {
     $name = $_GET['name'];
     //cách chống : lọc giá  trị từ form bằng hàm sau:
@@ -19,7 +19,7 @@ if (isset($_GET['search'])) {
 // kết nối CSDL để tìm kiếm theo tên : SELECT
     $sql_select_all = "SELECT * FROM category WHERE name LIKE '%$name%'";
     $result_all = mysqli_query($connection, $sql_select_all);
-    $users = mysqli_fetch_all($result_all, MYSQLI_ASSOC);
+    $sp = mysqli_fetch_all($result_all, MYSQLI_ASSOC);
 
 //    echo '<pre>';
 //    print_r($users);
@@ -66,7 +66,7 @@ if (isset($_GET['search'])) {
 </header>
 <h3 style="margin-left: 38%">sản phẩm bạn muốn tìm :</h3>
 <div class="product-items" style="width: 100%;padding: 154px">
-    <?php foreach ( $users AS $user):?>
+    <?php foreach ( $sp AS $user):?>
 
         <div class="product-item">
             <img src="../../back-end/crud_user/upload/<?php echo $user['avatar']?>" height="150px"  >

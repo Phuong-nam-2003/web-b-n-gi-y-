@@ -87,7 +87,7 @@ if (isset($_GET['search'])) {
       <div class="col-md-12">
         <div class="app-title">
           <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển</b></a></li>
+            <p>tìm kiếm sản phẩm</p>
           </ul>
           <div id="clock"></div>
         </div>
@@ -112,12 +112,6 @@ if (isset($_GET['search'])) {
 
               </tr>
 
-
-
-
-
-
-
               <?php if (!empty($users)):
 //                  var_dump($users);
               ?>
@@ -128,7 +122,6 @@ if (isset($_GET['search'])) {
                       <td><?php echo $user['id']?></td>
                       <td><?php echo $user['name']?></td>
                       <td><img src="crud_user/upload/<?php echo $user['avatar']?>" height="60px" ></td>
-
                       <td><?php echo $user['gia']?></td>
                       <td><?php echo $user['soluong']?></td>
                       <td>
@@ -141,8 +134,6 @@ if (isset($_GET['search'])) {
               <?php endforeach;?>
               <?php endif; ?>
               </thead>
-              <tbody>
-              </tbody>
           </table>
 
 

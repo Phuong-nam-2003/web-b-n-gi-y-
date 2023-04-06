@@ -30,12 +30,12 @@
     margin-bottom: 20px;
 }
 .product-item-text {
-    display: flex;
+
     justify-content: space-between;
 }
 .product-item button {
     margin-top: 12px;
-    height: 30px;
+    height: 62px;
     padding: 0 12px;
     cursor: pointer;
     border: none;

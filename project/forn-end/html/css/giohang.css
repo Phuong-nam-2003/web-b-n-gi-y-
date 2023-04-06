@@ -36,6 +36,7 @@
     border: none;
     border-radius: 5px;
     background-color: tomato;
+    margin-left: 42%;
 }
 ul {
     display: flex;
@@ -47,16 +48,8 @@ ul {
     display: inline-block;
     margin: 0 10px;
 }
-.logo {
-    color: black;
-    font-size: 40px;
-    font-family: Pacifico-Regular;
-    width: 50%;
-}
-.giorhang {
-    align-self: center;
-    margin-left: 11%;
-}
+
+
 .h-container.container {
     max-width: 70%;
     margin: auto;

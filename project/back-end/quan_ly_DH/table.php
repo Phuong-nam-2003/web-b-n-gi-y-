@@ -5,7 +5,10 @@ require_once '../crud_user/connection.php';
 $sql_select_all = "SELECT * FROM orders_detail  ";
 $resut_all = mysqli_query($connection, $sql_select_all);
 $orders_detail = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,23 +83,7 @@ $orders_detail = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
-
-
                         </div>
-
-
-                        <?php
-                        if (isset($_SESSION['success'])){
-                            echo $_SESSION['success'];
-                            unset($_SESSION['success']);
-                        }
-                        ?>
-                        <?php
-                        if (isset($_SESSION['error'])){
-                            echo $_SESSION['error'];
-                            unset($_SESSION['error']);
-                        }
-                        ?>
                     </div>
                     <table >
                         <thead>
@@ -107,8 +94,9 @@ $orders_detail = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
                             <th>giá</th>
                             <th>số lượng</th>
                             <th></th>
+
                         </tr>
-                        <?php foreach ( $orders_detail AS $user):?>
+                        <?php foreach ( $orders_detail AS  $user):?>
                             <tr>
                                 <td><?php echo $user['id_order']?></td>
                                 <td><?php echo $user['id_sanpham']?></td>
@@ -117,14 +105,12 @@ $orders_detail = mysqli_fetch_all($resut_all, MYSQLI_ASSOC)
                                 <td><?php echo $user['quantity']?></td>
 
                                 <td>
-                                    <a href="delete.php?id=<?php echo $user['id_sanphamr'];?>" onclick="return confirm('xóa?')">xóa</a>
+                                    <a href="delete.php?id_order=<?php echo $user['id_order']?>" onclick="return confirm('xóa?')">xóa</a>
                                 </td>
 
                             </tr>
                         <?php endforeach;?>
                         </thead>
-                        <tbody>
-                        </tbody>
                     </table>
                 </div>
             </div>
